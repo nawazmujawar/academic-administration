@@ -1,0 +1,132 @@
+<%- include("partials/header") %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOme Page</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- Jumbotron -->
+    <div class="container">
+        <header class="jumbotron">
+            <div class="container">
+                <h1>Welcome to Academic Adminsitration App</h1>
+                <p>
+                    We will provide you Notices, Assignments and Daily updates here.
+                </p>
+            </div>
+        </header>
+
+        <div class="container-fluid" id="main-links" style="margin-top: 30px;">
+            <div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card-deck text-center">
+                            <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: auto;">
+                                <div class="card-body">
+                                    <img src="images/student.svg" alt="" class="card-img-top" height="300px" />
+                                    <h5 class="card-title text-truncate">
+                                        Student
+                                    </h5>
+                                    <p class="card-text text-truncate">
+                                        <a class="text-truncate" style="
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          overflow: hidden;
+                        " target="_blank">
+                                        </a>
+                                    </p>
+                                    <a href="/signin/student" class="btn btn-primary">
+                                        Sign in
+                                    </a>
+                                    <br>
+                                    <!--for sign up Student -->
+                                    <a href="/signup/student">
+                                        Create new account ?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card-deck text-center">
+                            <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: auto;">
+                                <div class="card-body">
+                                    <img src="images/staff.svg" alt="" class="card-img-top" height="300px" />
+                                    <h5 class="card-title text-truncate">
+                                        Staff
+                                    </h5>
+                                    <p class="card-text text-truncate">
+                                        <a class="text-truncate" style="
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          overflow: hidden;
+                        " target="_blank">
+                                        </a>
+                                    </p>
+                                    <a href="/signin/teacher" class="btn btn-primary">
+                                        Sign in
+                                    </a>
+                                    <br>
+                                    <!--for sign up Staff -->
+                                    <a href="/signup/teacher">
+                                        Create new account ?
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card-deck text-center">
+                            <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: auto;">
+                                <div class="card-body">
+                                    <img src="images/admin.svg" alt="" class="card-img-top" height="300px" />
+                                    <h5 class="card-title text-truncate">
+                                        Admin
+                                    </h5>
+                                    <p class="card-text text-truncate">
+                                        <a class="text-truncate" style="
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                          " target="_blank">
+                                        </a>
+                                    </p>
+                                    <a href="/signin/admin" class="btn btn-primary">
+                                        Sign in
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
+
+
+<%- include("partials/footer") %>

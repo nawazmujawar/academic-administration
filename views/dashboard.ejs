@@ -1,0 +1,83 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-white rounded">
+        <a class="navbar-brand" href="#">
+            <img src="/assets/icons/url_logo.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+            Welcome Teacher</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/teacher/dashboard/new"> New post </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/teacher/signout">Sign Out</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        Manage all posts
+    </div>
+
+    <div class="container-fluid" id="main-links" style="margin-top: 30px;">
+        <div>
+            <div class="row">
+                <% posts.forEach(post => { %>
+                <!-- post with pdf, image and text -->
+                <div class="col-sm-12 col-md-6 col-lg-4">
+
+                    <div class="card-deck text-center">
+                        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: auto;">
+                            <div class="card-body">
+
+                                <% if (post.thumbnails.length === 0) { %>
+                                <img src="/images/student.svg" alt="image" class="card-img-top" height="300px" />
+                                <% } else { %>
+                                <img src="https://tkietbackend.herokuapp.com/<%= post.thumbnails[0].replace(/\\/, '/')  %>"
+                                    alt="" class="card-img-top" height="300px" />
+                                <% } %>
+                                <h5 class="card-title text-truncate">
+                                    <%= post.title %>
+                                </h5>
+                                <p class="card-text text-truncate">
+                                    <strong> <%= post.description %></strong>
+                                    <a class="text-truncate" style="
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
+                                                overflow: hidden;
+                                                " target="_blank">
+                                    </a>
+                                </p>
+                                <a href="/teacher/dashboard/post/<%= post._id %>" class="btn btn-primary">
+                                    Details
+                                </a>
+                                <% if (post.files.length) { %>
+                                <a href="https://tkietbackend.herokuapp.com/<%= post.files[0] %>"
+                                    class="btn btn-warning">
+                                    Download Attachment
+                                </a>
+                                <% } %>
+                                <p class="text-muted"> Posted by: <%= post.postedBy.fullName %></p>
+                                <p class="text-muted"><%= post.createdAt.toDateString() %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include("partials/footer") %>

@@ -1,0 +1,125 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">New post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/signout">Sign out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+
+        <div class="container" style="font-family: 'Varela Round', sans-serif;">
+            <div class="card shadow-sm p-3 mb-5 bg-white rounded" id="search-container">
+                <div class="card-body">
+                    <form action="/home/dashboard/search#search-container" method="get">
+                        <div class="form-group">
+                            <label for="InputSearch">Found .</label>
+                            <input type="text" name="query" class="form-control" id="InputSearch"
+                                placeholder="Enter keywords" required>
+                            <small id="searchHelp" class="form-text text-muted">Please enter the relevant
+                                keyword.</small>
+                            <button type="submit" class="btn btn-success">Search</button>
+                        </div>
+                    </form>
+                    <form action="/home/dashboard#search-container">
+                        <button class="btn btn-warning">Clear search</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="container" style="padding: 10px; text-align: right;">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/home/dashboard#main-links">Data created</a>
+                        <a class="dropdown-item" href="/home/dashboard/sort#main-links">A to Z</a>
+                        <a class="dropdown-item" href="/home/dashboard/top#main-links">Top performing links</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <% teachers.forEach(teacher => { %>
+                    <div class="card" style="width: auto;">
+                        <div class=" card-body">
+                            <h5 class="card-title"> Name: <%= teacher.fullName %></h5>
+                            <p class=" card-text"> Email: <%= teacher.email %></p>
+                            <p class=" card-text"> Employee ID: <%= teacher.employeeId %></p>
+                            <p class=" card-text"> Phone: <%= teacher.phone %></p>
+                            <p class=" card-text"> Department: <%= teacher.department %></p>
+                            <p class=" card-text"> Approved: <%= teacher.approved %></p>
+                            <p class="card-text">Block Teacher</p>
+                            <% if (teacher.approved) { %>
+                            <input type="checkbox" class="form-control form-check-input"
+                                onclick="checkApprove('<%= teacher._id %>')" id="<%= teacher._id %>" checked>
+                            <% } else { %>
+                            <input type="checkbox" class="form-control form-check-input"
+                                onclick="checkApprove('<%= teacher._id %>')" id="<%= teacher._id %>">
+                            <% } %>
+                            <p>Remove Teacher</p>
+                            <input type="checkbox" class="form-control form-check-input alert alert-danger"
+                                onclick="removeTeacher('<%= teacher._id %>')" id="<%= teacher._id %>">
+                            <script>
+                                function removeTeacher(userId) {
+                                    fetch(`https://tkietbackend.herokuapp.com/admin/${userId}/remove`, {
+                                        method: 'DELETE'
+                                    });
+                                }
+
+                                function checkApprove(userId) {
+                                    const checkApprove = document.getElementById(userId);
+                                    if (checkApprove.checked == true) {
+                                        fetch(`https://tkietbackend.herokuapp.com/admin/${userId}/approve`, {
+                                            method: 'PATCH',
+                                            body: JSON.stringify({
+                                                approved: true
+                                            }),
+                                            headers: {
+                                                'Content-Type': 'application/json; charset=UTF-8'
+                                            }
+                                        }).then(res => res.json()).then(json => console.log(json));
+                                    } else {
+                                        fetch(`https://tkietbackend.herokuapp.com/admin/${userId}/approve`, {
+                                            method: 'PATCH',
+                                            body: JSON.stringify({
+                                                approved: false
+                                            }),
+                                            headers: {
+                                                'Content-Type': 'application/json; charset=UTF-8'
+                                            }
+                                        }).then(res => res.json()).then(json => console.log(json));
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<%- include("partials/footer") %>

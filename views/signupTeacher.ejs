@@ -1,0 +1,74 @@
+<%- include("partials/header") %>
+<% if (isSuccess) { %>
+<script>
+    Swal.fire(
+        'Welcome to TKIT Portal!',
+        'Registration successful. Please check your email for activation!',
+        'success'
+    );
+</script>
+<% } %>
+
+<% if (isTeacherExists) { %>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Teacher already exists!',
+        footer: '<a href="/signin/teacher">Sign in here</a>'
+    });
+</script>
+<% } %>
+
+<div class="container">
+    <div>
+        <img src="/images/signinicon.svg" alt="" width="100%" height="500px" />
+    </div>
+    <h2>Teacher Signup</h2>
+    <form style="margin: auto;" method="post" method="/signup/teacher">
+        <div class="form-group">
+            <label for="employeeId">Employee ID</label>
+            <input type="text" name="employeeId" class="form-control" id="employeeId" placeholder="Enter Employee ID."
+                required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="Enter email" required>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                else.</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholdeswor="Enter password"
+                required>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="fullName" class="form-control" id="name" placeholder="Enter name" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone No.</label>
+            <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter mobile no." required>
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <select name="department" id="department" class="form-control" required>
+                <option value="MECHANICAL">Mechanical</option>
+                <option value="COMPUTER">Computer Science</option>
+                <option value="CIVIL">Civil</option>
+                <option value="CHEMICAL">Chemical</option>
+                <option value="ETC">Electronics</option>
+            </select>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+            <br />
+            <br />
+            <a href="/signin/teacher">Sign in from here</a>
+            <a href="/">Home</a>
+        </div>
+    </form>
+</div>
+
+<%- include("partials/footer") %>

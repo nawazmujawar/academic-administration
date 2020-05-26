@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+
+<% if (!isSuccess) { %>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Authentication failed!'
+    })
+</script>
+<% } %>
+
+<div class="container">
+    <div>
+        <img src="/images/signinicon.svg" alt="" width="100%" height="500px" />
+    </div>
+    <h2>Teacher</h2>
+    <form style="margin: auto;" action="/signin/teacher" method="POST">
+        <div class="form-group">
+            <label for="employeeId">ID</label>
+            <input type="text" class="form-control" id="employeeId" placeholder="Enter ID" name="employeeId" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"
+                name="email" />
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" />
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <br> <br>
+            <a href="/signup/teacher">Register new Account here</a>
+            <a href="/home" class="text">Home</a>
+        </div>
+
+    </form>
+</div>
+<%- include("partials/header") %>
